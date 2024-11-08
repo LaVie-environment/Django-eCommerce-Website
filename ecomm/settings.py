@@ -25,7 +25,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG")
+DEBUG = config("DEBUG", default=False, cast=bool)
+
 
 ALLOWED_HOSTS = []
 
@@ -64,8 +65,9 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Facebook API KEYS
-SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
-SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
+SOCIAL_AUTH_FACEBOOK_KEY = config("SOCIAL_AUTH_FACEBOOK_KEY", default="dummy_key")
+SOCIAL_AUTH_FACEBOOK_SECRET = config("SOCIAL_AUTH_FACEBOOK_SECRET", default="dummy_secret")
+
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -206,14 +208,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="default_email@example.com")
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default="dummy_password")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_USE_SSL = False
 
 # RazorPay API KEYS
-RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID')
-RAZORPAY_SECRET_KEY = config('RAZORPAY_SECRET_KEY')
+RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID', default="dummy_id")
+RAZORPAY_SECRET_KEY = config('RAZORPAY_SECRET_KEY', default="dummy_secret")
 
 # Auth Backends Configurations
 AUTHENTICATION_BACKENDS = (
